@@ -10,6 +10,8 @@ use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\JurusanController;
 
+use App\Http\Controllers\MatakuliahController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -134,3 +136,15 @@ Route::post('/jurusan', [JurusanController::class, 'store'])
 Route::get('/jurusan/{id}', [JurusanController::class, 'show'])
     ->whereNumber('id')
     ->name('jurusan.show');
+
+Route::get('/matakuliah', [MatakuliahController::class, 'index'])
+    ->name('matakuliah.index');
+
+Route::get('/matakuliah/create', [MatakuliahController::class, 'create'])
+    ->name('matakuliah.create');
+
+Route::post('/matakuliah', [MatakuliahController::class, 'store'])
+    ->name('matakuliah.store');
+
+Route::get('/matakuliah/{id}', [MatakuliahController::class, 'show'])
+    ->name('matakuliah.show');
