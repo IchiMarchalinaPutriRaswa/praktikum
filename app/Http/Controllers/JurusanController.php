@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
+use Illuminate\Http\Request;
 
 class JurusanController extends Controller
 {
@@ -13,10 +14,28 @@ class JurusanController extends Controller
         return view('jurusan.index', compact('jurusans'));
     }
 
+    public function create()
+    {
+        return view('jurusan.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'kode' => 'required|string|max:5|unique:jurusans,kode',
+            'nama' => 'required|string|max:100',
+        ]);
+
+        Jurusan::create($data);
+
+        return redirect()->route('jurusan.index')
+            ->with('success', 'Data jurusan berhasil ditambahkan.');
+    }
+
     public function show($id)
     {
-    $jurusan = Jurusan::findOrFail($id);
+        $jurusan = Jurusan::findOrFail($id);
 
-    return view('jurusan.show', compact('jurusan'));
+        return view('jurusan.show', compact('jurusan'));
     }
 }

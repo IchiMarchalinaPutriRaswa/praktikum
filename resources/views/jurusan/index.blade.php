@@ -1,5 +1,13 @@
 <h1>Daftar Jurusan</h1>
 
+@if (session('success'))
+    <p>{{ session('success') }}</p>
+@endif
+
+<p>
+    <a href="{{ route('jurusan.create') }}">Tambah Jurusan</a>
+</p>
+
 <table border="1" cellpadding="6">
     <tr>
         <th>No</th>
