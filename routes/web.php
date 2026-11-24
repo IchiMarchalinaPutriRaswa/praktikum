@@ -12,6 +12,8 @@ use App\Http\Controllers\JurusanController;
 
 use App\Http\Controllers\MatakuliahController;
 
+use App\Http\Controllers\BukuController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -148,3 +150,12 @@ Route::post('/matakuliah', [MatakuliahController::class, 'store'])
 
 Route::get('/matakuliah/{id}', [MatakuliahController::class, 'show'])
     ->name('matakuliah.show');
+
+Route::get('/buku', [BukuController::class, 'index'])
+    ->name('buku.index');
+
+Route::get('/buku/create', [BukuController::class, 'create'])
+    ->name('buku.create');
+
+Route::post('/buku', [BukuController::class, 'store'])
+    ->name('buku.store');
